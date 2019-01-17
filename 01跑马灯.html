@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button @click="move">动</button>
+        <button @click="down">停</button>
+        <h3>{{msg}}</h3>
+    </div>
+
+    <script>
+        let vm = new Vue ({
+            el:'#app',
+            data:{
+                msg:'张baby爱睡觉...',
+                timeId:null,
+            },
+            methods: {
+                move(){
+                    clearInterval(this.timeId)
+                    this.timeId = setInterval(() => {
+                        let start = this.msg.substring(0,1)
+                        let stop = this.msg.substring(1)
+                        this.msg = stop + start
+                    },300)
+                },
+                down(){
+                    clearInterval(this.timeId)
+                }
+            },
+        })
+    
+    </script>
+</body>
+</html>
