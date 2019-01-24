@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <login @getmation ="show" ></login>
+    </div>
+    <template id="login">
+        <div>
+            <input type="button" @click = "myclick" value="子组件按钮,点击除法父组件传来的方法">
+            <h1>这是子组件</h1>
+        </div>
+    </template>
+
+    <script>
+        var login = {
+            data() {
+                return {
+                    sonmsg:{name:'zs',age:18}
+                }
+            },
+            template: '#login',
+            methods: {
+                myclick(){
+                    this.$emit('getmation',this.sonmsg)
+                }
+            },
+        }
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                fromsonmsg:''
+            },
+            methods: {
+                show(data){
+                    this.fromsonmsg = data
+                }
+            },
+            components: {
+                login,
+            }
+        })
+    </script>
+</body>
+
+</html>

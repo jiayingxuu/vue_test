@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <comm :parentmsg = "msg"></comm>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                msg:'这是父组件传来的'
+            },
+            components:{
+                comm:{
+                    data() {
+                        return {
+                            sonmsg:'333333',
+                        }
+                    },
+                    template:'<h1 @click="change">呵呵呵呵{{sonmsg}} ----{{parentmsg}}</h1>',
+                    props:['parentmsg'],
+                    methods: {
+                        change(){
+                            this.parentmsg = "我被改了"
+                        }
+                    },
+                }
+            }
+        })
+    </script>
+</body>
+</html>
